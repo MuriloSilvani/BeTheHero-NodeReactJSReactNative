@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { FiPower, FiTrash2 } from 'react-icons/fi';
+import { FiPower, FiTrash2, FiBell } from 'react-icons/fi';
 
 import api from '../../services/api';
 
@@ -50,11 +50,25 @@ export default function Profile({ history }) {
         history.push('/');
     }
 
+    function handleMessages() {
+
+        history.push('/messages');
+    }
+
     return (
         <div className='profile-container'>
             <header>
                 <img src={LogoImg} alt='Be The Hero' />
                 <span>Bem vinda, {ongName}</span>
+
+
+                <Link to='/messages'>
+                    <button onClick={() => { handleMessages() }} type='button'>
+                        <FiBell size={18} color='#e02041' />
+                    </button>
+                </Link>
+
+
 
                 <Link className='button' to='/incidents/new'> Cadastrar novo caso </Link>
                 <button onClick={() => { handleLogout() }} type='button'>

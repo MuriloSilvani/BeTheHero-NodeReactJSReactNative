@@ -30,6 +30,11 @@ export default function Detail({ navigation, route }) {
         Linking.openURL(`whatsapp://send?phone=${incident.whatsapp}&text=${message}`);
     }
 
+    function sendChat() {
+        // navigation.navigate('Incidents');
+        navigation.navigate('Chat', { incident });
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -61,6 +66,17 @@ export default function Detail({ navigation, route }) {
                 <Text style={styles.heroTitle}>Seja o herói desse caso.</Text>
 
                 <Text style={styles.heroDescription}>Entre em contato:</Text>
+
+                <View style={styles.actions}>
+                    <TouchableOpacity
+                        style={styles.action}
+                        onPress={sendChat}>
+                        <Text style={styles.actionText}>
+                            Chat
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+
 
                 <View style={styles.actions}>
                     <TouchableOpacity

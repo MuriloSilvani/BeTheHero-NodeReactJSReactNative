@@ -6,6 +6,8 @@ import styles from './styles';
 
 import api from '../../services/api';
 
+import { Container } from './styleComponent';
+
 export default function Incidents({ navigation }) {
 
     const [incidents, setIncidents] = useState([]);
@@ -43,7 +45,7 @@ export default function Incidents({ navigation }) {
     }, []);
 
     return (
-        <View style={styles.container}>
+        <Container>
             <View style={styles.header}>
                 <Image style={styles.logoImg} source={Logo} />
                 <Text style={styles.headerText}>
@@ -53,7 +55,6 @@ export default function Incidents({ navigation }) {
 
             <Text style={styles.title}>Bem-vindo!</Text>
             <Text style={styles.description}>Escolha um dos casos abaixo e salve o dia.</Text>
-
             <FlatList
                 style={styles.incidentList}
                 data={incidents}
@@ -61,6 +62,11 @@ export default function Incidents({ navigation }) {
                 showsVerticalScrollIndicator={true}
                 onEndReached={loadIncidents}
                 onEndReachedThreshold={0.2}
+                ListEmptyComponent={() => (
+                    <View style={styles.incident}>
+                        <Text style={[styles.incidentProperty, { marginTop: 0 }]}>Sem casos disponiveis!</Text>
+                    </View>
+                )}
                 renderItem={({ item: incident }) => (
 
 
@@ -87,6 +93,6 @@ export default function Incidents({ navigation }) {
                 )} />
 
 
-        </View>
+        </Container>
     );
 }

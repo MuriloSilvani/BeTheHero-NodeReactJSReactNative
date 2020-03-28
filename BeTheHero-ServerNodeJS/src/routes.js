@@ -6,8 +6,14 @@ const OngsController = require('./controller/OngsController');
 const IncidentsController = require('./controller/IncidentsController');
 const ProfileController = require('./controller/ProfileController');
 const SessionController = require('./controller/SessionController');
+const MessagesController = require('./controller/MessagesController');
 
 const routes = Router();
+
+routes.get('/messages/:incident_id/:hero_id', MessagesController.listar);
+routes.post('/messages', MessagesController.cadastrar);
+routes.get('/conversations/:ong_id', MessagesController.listarConversas);
+
 
 routes.get('/ongs', OngsController.listar);
 
